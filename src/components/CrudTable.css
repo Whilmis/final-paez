@@ -1,0 +1,24 @@
+.buscar{display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.belemento{
+    margin: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+.h5{
+    color: #7d7e7f;
+    text-align: center;
+}
+.btn{
+    color: white ;
+    background-color: #0077d1;
+    padding: 10px;
+    border: none;
+}
+.contenedor{
+    margin: 15px; 
+}

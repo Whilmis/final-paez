@@ -1,0 +1,47 @@
+{
+  "registros": [
+    {
+      "id": 1660753497803,
+      "idUsuario": 1,
+      "nombreEstudiante": "Whilmis",
+      "apellidoEstudiante": "8095442812",
+      "actaNacimiento": "001-054564-7",
+      "direccion": "La victoria calle Altagracia #42",
+      "nombrePadre": "Whilmis",
+      "apellidoPadre": "Perez De Peña",
+      "telefono": "8095442812",
+      "cedula": "402-5554890-8",
+      "curso": "Maternal",
+      "documentoP": "402-225479-6",
+      "confirmacion": true,
+      "pago": true
+    }
+  ],
+  "users": [
+    {
+      "nombre": "Miguel",
+      "apellido": "Perez",
+      "gmail": "Miguel@gmail.com",
+      "contrasena": "5555",
+      "admin": true,
+      "id": 2424
+    },
+    {
+      "nombre": "Richard",
+      "apellido": "Hernandez",
+      "gmail": "Richard@gmail.com",
+      "contrasena": "5555",
+      "admin": true,
+      "id": 1659894580590
+    },
+    {
+      "nombre": "Whilmis",
+      "apellido": "Whilmis",
+      "gmail": "Pipi@gmail.com",
+      "contrasena": "66666",
+      "admin": true,
+      "id": 1659916323414,
+      "password": ""
+    }
+  ]
+}
