@@ -21,7 +21,7 @@ function Copyright(props) {
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://github.com/Whilmis">
-        Whilmis Perez | Richard Hernandez
+        Whilmis Perez | Jairo Brito | Mirleny De Jesús 
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
