@@ -58,7 +58,7 @@ export default function CrudtableF() {
     
     const getDataRequest = async () => {
       try {
-          const resp = await axios.get('https://compasspoint.herokuapp.com/api/v1/forms');
+          const resp = await axios.get('https://compasspoint.herokuapp.com/api/v1/estudiantes');
           console.log(resp.data);
           setData(resp.data);
       } catch (err) {

@@ -13,8 +13,8 @@ import CrudContext from "../context/CrudContext";
 
 
 const initailForm = {
-    id:null,idUsuario:5,nombreEstudiante:"",apellidoEstudiante:"",actaNacimiento:"https://drive.google.com/file/d/1aRbTQcluHXG4Z9T9fFXOwS1xOJjmrcwL/view",curso:"",tanda:"",exo:"",fecha_n: null ,vacunas: "", discapacidad:"", tipo_sangre: "", seguro_medico:"https://docplayer.es/docs-images/43/1236426/images/page_1.jpg" ,alergias:"",tipo_de_estudiante:"",  foto:"",cedula:"",nombrePadre:"",apellidoPadre:"",telefono:"",direccion:"", trabajo:false,tipo_trabajo:"", correo:"", 
-    nacionalidad:"",  documento_personal:"https://drive.google.com/file/d/1aRbTQcluHXG4Z9T9fFXOwS1xOJjmrcwL/view", otro:"pdf", cedula2:"", nombrePadre2:"",apellidoPadre2:"", telefono2:"",direccion2:"",   documento_personal2:"https://drive.google.com/file/d/1aRbTQcluHXG4Z9T9fFXOwS1xOJjmrcwL/view", estado_acta:"", numero_de_acta:"",provincias_JCE:"",municipio_JCE:"",oficialias_JCE:"",libro:"",folio:"", year:""   
+    id:null,idUsuario:5,nombreEstudiante:"",apellidoEstudiante:"",acta:"https://drive.google.com/file/d/1aRbTQcluHXG4Z9T9fFXOwS1xOJjmrcwL/view",curso:"",tanda:"",exo:"",fecha_n: null ,vacunas: "https://drive.google.com/file/d/1TYBbw4bxdTMr98pq-Da4q6oeSU4lQjR7/view", discapacidad:"", tipo_sangre: "", seguro_medico:"https://docplayer.es/docs-images/43/1236426/images/page_1.jpg" ,alergias:"",tipo_de_estudiante:"",  foto:"",cedula:"https://drive.google.com/file/d/1HPUjsaEIo12VvlkkNH2Le3GXdKky8qMV/view?usp=share_link",nombrePadre:"",apellidoPadre:"",telefono:"",direccion:"", trabajo:false,tipo_trabajo:"", correo:"", 
+    nacionalidad:"",  documento_personal:"https://drive.google.com/file/d/1aRbTQcluHXG4Z9T9fFXOwS1xOJjmrcwL/view", otro:"pdf", cedula2:"https://drive.google.com/file/d/1ackOdnPsGFjKWqL2htWR-fYDoJ3Dgpoy/view?usp=share_link", nombrePadre2:"",apellidoPadre2:"", telefono2:"",direccion2:"",   documento_personal2:"https://drive.google.com/file/d/1aRbTQcluHXG4Z9T9fFXOwS1xOJjmrcwL/view", estado_acta:"", numero_de_acta:"",provincias_JCE:"",municipio_JCE:"",oficialias_JCE:"",libro:"",folio:"", year:""   
 };
 
 

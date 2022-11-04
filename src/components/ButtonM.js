@@ -8,7 +8,7 @@ import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 
 
 const ButtonM = ({el})=>{
-    let { nombreEstudiante,apellidoEstudiante,actaNacimiento,direccion,nombrePadre,tanda,apellidoPadre,telefono,cedula,confirmacion,pago,curso,documento_personal, id } = el;
+    let { nombreEstudiante,apellidoEstudiante,acta,direccion,nombrePadre,tanda,apellidoPadre,telefono,cedula,confirmacion,pago,curso,documento_personal, id } = el;
   
     const handelPrint = ()=>{   window.print()};
     const[isOpenModal,openModal,closeModal] = useModal(false);
@@ -24,8 +24,8 @@ const ButtonM = ({el})=>{
           <div id="divb2"><h3>Telefono</h3> <p>{telefono}</p></div>                                                   
           <div id="divb2"><h3>Curso</h3> <p>{curso}</p></div>
           <div id="divb2"><h3>Tanda</h3> <p>{tanda}</p></div>
-          <div id="divb2"><h3>Acta de Naciminento</h3> <a href={actaNacimiento}>Documanto</a></div> 
-          <div id="divb2"><h3>Documento Personal</h3> <a href={documento_personal}>Documanto</a></div> 
+          <div id="divb2"><h3>Acta de Naciminento</h3> <a href={"https://drive.google.com/file/d/1ZlExAmvhYfv8bbpDMucMf3b2oNjIRjEq/view"}>Documanto</a></div> 
+          <div id="divb2"><h3>Documento Personal</h3> <a href={"https://drive.google.com/file/d/1HPUjsaEIo12VvlkkNH2Le3GXdKky8qMV/view"}>Documanto</a></div> 
           <div id="divb2"><h3>Confirmacion</h3><p> {confirmacion? <Alert severity="success">Realizada</Alert>: <Alert severity="error">No realizada</Alert> }</p></div>  
           <div id="divb2"><h3>Pago</h3> <p>{pago? <Alert severity="success">Confirmado</Alert> :<Alert severity="error">No confirmado</Alert>}</p></div> 
         

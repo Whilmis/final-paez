@@ -11,7 +11,7 @@ import "./CrudForm.css"
 import CrudContext from "../context/CrudContext";
 
 const initailForm = {
-  id:null,idUsuario:1,nombreEstudiante:"",apellidoEstudiante:"",acta:"",direccion:"",nombrePadre:"",apellidoPadre:"",telefono:"",cedula:"",curso:"", documento_personal:"", confirmacion:"", pago:"",tanda:""
+  id:null,idUsuario:1,nombreEstudiante:"",apellidoEstudiante:"",acta:"",curso:"", documento_personal:"", confirmacion:"", pago:"",tanda:"", 
 };
 
 
@@ -39,7 +39,7 @@ const CrudForm = () => {
   const handleFoto = (e) => {
     setForm({
       ...form,
-      [e.target.name]: e.target.files[0],
+      [e.target.name]: e.target.files,
     });
   };
 
@@ -155,7 +155,7 @@ const CrudForm = () => {
         <div className="doc">
        <div className="doc2">
         <label>Actana de nacimiento</label>
-       <input type="file" name='acta' onChange={handleFoto}></input>
+       <input type="file" name='acta' ></input>
        </div>
        </div>
    </Grid>
@@ -283,7 +283,7 @@ const CrudForm = () => {
 
     <div className="doc2">
        <label>Documento personal</label>
-       <input type="file" name='documento_personal' onChange={handleFoto}></input>
+       <input type="file" name='documento_personal' ></input>
        </div>
        
        </Grid>
