@@ -12,6 +12,8 @@ import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import AppWidgetSummary from './AppWidgetSummary'
 import ButtonM from "./ButtonM";
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 import { Grid, Container, Typography } from '@mui/material';
 
 
@@ -40,8 +42,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 
 const CrudTableC = () => {
-  const fileName = "compass-point";
-  const [dataAPI, setData] = React.useState([])
+
   
 
 
@@ -49,8 +50,8 @@ const CrudTableC = () => {
   const { db: data,setDataToEdit, deleteData } = useContext(CrudContext);
   let newData = data.filter((el) => el.idUsuario == 5);
   let newData3 = data.filter((el) => el.curso == "Maternal" )
-  let newData4 = data.filter((el) => el.curso == "Kínder" )
-  let newData5 = data.filter((el) => el.curso == "Pre-Primaria" )
+  let newData4 = data.filter((el) => el.curso == "Kinder" )
+  let newData5 = data.filter((el) => el.curso == "Pre-Primario" )
   return (
     <div>
     <hr></hr>
@@ -92,8 +93,8 @@ const CrudTableC = () => {
                 {el.nombreEstudiante+ " "+ el.apellidoEstudiante}
               </StyledTableCell>
               <StyledTableCell align="right">{el.nombrePadre+ " "+ el.apellidoPadre}</StyledTableCell>
-              <StyledTableCell align="right">{el.pago? "Realizado":"No realizado"}</StyledTableCell>
-              <StyledTableCell align="right">{el.confirmacion? "Confirmado":"No Confirmado"}</StyledTableCell>
+              <StyledTableCell align="right">{el.pago? <Alert severity="success">Confirmado</Alert> :<Alert severity="error">No confirmado</Alert>}</StyledTableCell>
+              <StyledTableCell align="left">{el.confirmacion?  <Alert severity="success">Realizada</Alert>: <Alert severity="error">No realizada</Alert> }</StyledTableCell>
               <StyledTableCell align="right">{
                   <ButtonGroup variant="outlined" aria-label="outlined button group">
                   <Button onClick={() => deleteData(el.id)}>Eliminar</Button>

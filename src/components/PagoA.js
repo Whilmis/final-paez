@@ -9,10 +9,11 @@ import CreditCardIcon from '@mui/icons-material/CreditCard';
 import Paypal from "./Paypal";
 import CrudTableR from "./CrudTableR";
 import "./styles.css";
+import CrudTableRA from "./CrudTableRA";
 
 
 
-const Pago = ( )=>{
+const PagoA = ( )=>{
     return(
         <div className="contac">
         <HeadersC/>
@@ -67,15 +68,13 @@ const Pago = ( )=>{
       </Box>
     
       </form>
-      <h3>Pago directo: Paypal o tarjeta </h3>
-     <Paypal/>
-     <div className="cont"></div>
+     
 
 
 
-     <CrudTableR></CrudTableR>
+     <CrudTableRA></CrudTableRA>
        </div>
     )
 }
 
-export default Pago;
+export default PagoA;

@@ -11,27 +11,26 @@ import CrudContext from "../context/CrudContext";
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import AppWidgetSummary from './AppWidgetSummary'
-import Alert from '@mui/material/Alert';
+import Busqueda from "./Busqueda";
+import axios from "axios";
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import axios from "axios";
 import {ExportToExcel} from './exportToExcel'
 import { Grid, Container, Typography } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import PageviewIcon from '@mui/icons-material/Pageview';
 import "./CrudTable.css"
-import ButtonM from './ButtonM';
-import Notificacion from './Notificacion';
-import Resumen from './Resumen';
-import { writeFileXLSX } from 'xlsx';
+import nino1 from "./nino1.jpg";
+import ButtonE from './ButtonE';
+import Resumen2 from './Resumen2';
+import Avatar from '@mui/material/Avatar';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: "#0077d1",
     color: theme.palette.common.white,
-    
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 14,
@@ -52,9 +51,11 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 
 
-export default function CrudtableF() {
+export default function CrudtableEs() {
     const fileName = "compass-point";
     const [dataAPI, setData] = React.useState([])
+    const[filtro,SetFiltro] = useState();
+    const [busqueda, setBusqueda] = useState(null);
     
     const getDataRequest = async () => {
       try {
@@ -71,11 +72,10 @@ export default function CrudtableF() {
   
     }, [])
     let { db: data ,setDataToEdit, deleteData } = useContext(CrudContext);
-    let newData = data.filter((el) => el.pago )
-    let newData2 = data.filter((el) => el.confirmacion )
+ 
     const [form, setForm] = useState(false);
-    const[filtro,SetFiltro] = useState();
-    const [busqueda, setBusqueda] = useState(null);
+    const [nombre, setnombre] = useState(null);
+    let DataE = data.filter((el) => el.pago == 'confirmado' &  el.confirmacion == 'realizada')
     const [dataf, setdataf] = useState([]);
     
       
@@ -83,44 +83,44 @@ export default function CrudtableF() {
     const [filtro, setfiltro] = useState(false);
     const [datafiltro, setdatafiltro] = useState([]);
    */
+    const handleFiltro = (e) => {
+      SetFiltro( e.target.value
+      );
+    };
   
     const handleChange = (e) => {
       setBusqueda( e.target.value
       );
     };
-    const handleFiltro = (e) => {
-      SetFiltro( e.target.value
-      );
-    };
+  
     const handleSubmit = (e) => {
       e.preventDefault();
       if(filtro === 'nombreEstudiante'){
-      setdataf(data.filter((el) => el.nombreEstudiante === busqueda ))
+      setdataf(DataE.filter((el) => el.nombreEstudiante === busqueda ))
       setForm(true);
     }
     else if(filtro === 'nombrePadre'){
-      setdataf(data.filter((el) => el.nombrePadre === busqueda ))
+      setdataf(DataE.filter((el) => el.nombrePadre === busqueda ))
       setForm(true);
     }
     else if(filtro === 'cedula'){
-      setdataf(data.filter((el) => el.cedula === busqueda ))
+      setdataf(DataE.filter((el) => el.cedula === busqueda ))
       setForm(true);
     }
     else if(filtro === 'curso'){
-      setdataf(data.filter((el) => el.curso === busqueda ))
+      setdataf(DataE.filter((el) => el.curso === busqueda ))
       setForm(true);
     }else if(filtro === 'confirmacion'){
-      setdataf(data.filter((el) => el.confirmacion === true ))
+      setdataf(DataE.filter((el) => el.confirmacion === true ))
       setForm(true);
     }else if(filtro === 'pago'){
-      setdataf(data.filter((el) => el.pago === true ))
+      setdataf(DataE.filter((el) => el.pago === true ))
       setForm(true);
     }
       
   
     
     }
-  
 
   return (
     <div className='contenedor'>
@@ -134,11 +134,11 @@ export default function CrudtableF() {
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title=" Solitudes pagadas" total={newData.length} color="info" icon={'ant-design:apple-filled'} />
+            <AppWidgetSummary title=" Solitudes pagadas" total={data.length} color="info" icon={'ant-design:apple-filled'} />
           </Grid>
 
           <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Solitudes Confimadas" total={newData2.length} color="info" icon={'ant-design:windows-filled'} />
+            <AppWidgetSummary title="Solitudes Confimadas" total={data.length} color="info" icon={'ant-design:windows-filled'} />
           </Grid>
 
           
@@ -190,7 +190,7 @@ export default function CrudtableF() {
      
       </form>
       <div className='belemento'>
-       <Resumen/>
+       <Resumen2/>
         
         <ExportToExcel apiData={dataAPI} fileName={fileName} />
         </div>
@@ -199,10 +199,10 @@ export default function CrudtableF() {
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>Nombre del Estudiante</StyledTableCell>
-            <StyledTableCell align="right">Nombre del Padre</StyledTableCell>
-            <StyledTableCell align="right">Pago</StyledTableCell>
-            <StyledTableCell align="right">Confirmacion</StyledTableCell>
+            <StyledTableCell>Foto</StyledTableCell>
+            <StyledTableCell align="right">Nombre del estudiante</StyledTableCell>
+            <StyledTableCell align="right">Nombre del padre</StyledTableCell>
+            <StyledTableCell align="right">Cedula</StyledTableCell>
             <StyledTableCell align="right">Acciones</StyledTableCell>
           </TableRow>
         </TableHead>
@@ -210,33 +210,32 @@ export default function CrudtableF() {
         {   form?  ( dataf.map((el) => (
             <StyledTableRow key={el.id}>
               <StyledTableCell component="th" scope="row">
-                {el.nombreEstudiante+ " "+ el.apellidoEstudiante}
+                {<Avatar alt="Remy Sharp" src={nino1} />}
               </StyledTableCell>
+              <StyledTableCell align="right">{el.nombreEstudiante+ " "+ el.apellidoEstudiante }</StyledTableCell>
               <StyledTableCell align="right">{el.nombrePadre+ " "+ el.apellidoPadre}</StyledTableCell>
-              <StyledTableCell align="right">{el.pago == 'confirmado'? <Alert severity="success">Confirmado</Alert> :<Alert severity="error">No confirmado</Alert>}</StyledTableCell>
-              <StyledTableCell align="center">{el.confirmacion == 'realizada'? <Alert severity="success">Realizada</Alert>: <Alert severity="error">No realizada</Alert>}</StyledTableCell>
+              <StyledTableCell align="right">{el.cedula}</StyledTableCell>
               <StyledTableCell align="right">{
                   <ButtonGroup variant="outlined" aria-label="outlined button group">
                   <Button onClick={() => deleteData(el.id)}>Eliminar</Button>
                   <Button onClick={() => setDataToEdit(el)}>Editar</Button>
-                   <ButtonM el={el}/>
+                  
                 </ButtonGroup>
               }</StyledTableCell>
             </StyledTableRow>
-          ))) :    ( data.map((el) => (
+          ))) :    ( DataE.map((el) => (
             <StyledTableRow key={el.id}>
-              <StyledTableCell component="th" scope="row">
-                {el.nombreEstudiante+ " "+ el.apellidoEstudiante}
+             <StyledTableCell component="th" scope="row">
+                {<Avatar alt="Remy Sharp" src={nino1} />}
               </StyledTableCell>
+              <StyledTableCell align="right">{el.nombreEstudiante+ " "+ el.apellidoEstudiante}</StyledTableCell>
               <StyledTableCell align="right">{el.nombrePadre+ " "+ el.apellidoPadre}</StyledTableCell>
-              <StyledTableCell align="right">{el.pago == 'confirmado'? <Alert severity="success">Confirmado</Alert> :<Alert severity="error">No confirmado</Alert>}</StyledTableCell>
-              <StyledTableCell align="center">{el.confirmacion == 'realizada'? <Alert severity="success">Realizada</Alert>: <Alert severity="error">No realizada</Alert>}</StyledTableCell>
+              <StyledTableCell align="right">{el.cedula}</StyledTableCell>
               <StyledTableCell align="right">{
                   <ButtonGroup variant="outlined" aria-label="outlined button group">
                   <Button onClick={() => deleteData(el.id)}>Eliminar</Button>
                   <Button onClick={() => setDataToEdit(el)}>Editar</Button>
-                   <ButtonM el={el}/>
-                  {el.confirmacion == 'realizada'& el.pago == 'confirmado'? <Notificacion />: ""}
+                  <ButtonE el={el}></ButtonE>
                 </ButtonGroup>
               }</StyledTableCell>
             </StyledTableRow>

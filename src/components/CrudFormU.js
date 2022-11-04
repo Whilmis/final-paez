@@ -4,6 +4,10 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
+import InputLabel from '@mui/material/InputLabel';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
 import "./CrudForm.css"
 
 const initailForm = {
@@ -11,7 +15,8 @@ const initailForm = {
   apellido: "",
   gmail:"",
   contrasena:"",
-  admin: false,
+  cedula: "",
+  admin: "General",
   id: null,
 };
 
@@ -102,34 +107,52 @@ const CrudFormU = () => {
         onChange={handleChange}
         
       />    
-            <TextField
+      <TextField
+        id="outlined-name"
+        label="Cedula"
+        value={form.cedula}
+        name="cedula"
+        onChange={handleChange}
+        
+      />  
+      
+  
+
+    <div className="check" >
+  <TextField
         id="outlined-name"
         label="Contraseña"
-        value={form.direccion}
+        value={form.contrasena}
         type="password"
         name="contrasena"
         onChange={handleChange}
 
       />
-  
-<div className="check">
-<div>
-        
-        <label for="confirmacion" class="textos">Admin</label>
-         <input
-           type="checkbox"
-           name="admin"
-           id="admin"
-           onChange={handleChecked}
-           checked={form.admin}
-         />
-         </div>
+    
+    <FormControl sx={{ m: 1, minWidth: 120, }} size="small">
+      <InputLabel id="demo-select-small">Usuario</InputLabel>
+      <Select
+         
+         labelId="demo-simple-select-label"
+         id="demo-simple-select-label"
+          name="admin" value={form.admin}  onChange={handleChange}
+          label="Usuario"
+          
+        >
+          <MenuItem value={'Admin'}>Admin</MenuItem>
+          <MenuItem value={'General'}>General</MenuItem>
+          
+        </Select>
+    </FormControl>
       
+    </div>
+        
+         <div className="check">
         <ButtonGroup variant="contained" aria-label="outlined primary button group">
       <Button type="submit">Enviar</Button>
       <Button onClick={handleReset}>Reset</Button>
     </ButtonGroup>
-</div>
+    </div>
       </Box>
     
       </form>

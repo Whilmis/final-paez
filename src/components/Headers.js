@@ -35,6 +35,10 @@ const Headers = () => {
   const handleInicio = () => {
     navigate("/administrador")
   };
+
+  const handleEstudiantes = () => {
+    navigate("/estudiantes")
+  };
   
   const handleAdministrar = () => {
     navigate("/administrar")
@@ -42,6 +46,9 @@ const Headers = () => {
   
   const handleUser = () => {
     navigate("/usuarios")
+  };
+  const handlePagosA = () => {
+    navigate("/pagoA")
   };
   
 
@@ -109,6 +116,12 @@ const Headers = () => {
                 <MenuItem  onClick={handleAdministrar}>
                   <Typography textAlign="center">Administrar</Typography>
                 </MenuItem>
+                <MenuItem  onClick={handleEstudiantes}>
+                  <Typography textAlign="center">Estudiantes</Typography>
+                </MenuItem>
+                <MenuItem  onClick={handlePagosA}>
+                  <Typography textAlign="center">Pagos</Typography>
+                </MenuItem>
                 <MenuItem  onClick={handleUser}>
                   <Typography textAlign="center">Usuarios</Typography>
                 </MenuItem>
@@ -156,6 +169,20 @@ const Headers = () => {
               </Button>
       
           </Box>
+
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          
+          <Button
+         
+            onClick={handleEstudiantes}
+            sx={{ my: 2, color: 'white', display: 'block' }}
+          >
+             Estudiantes
+          </Button>
+  
+      </Box>
+      
+
 
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
           

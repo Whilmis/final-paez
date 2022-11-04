@@ -125,7 +125,10 @@ input:valid~label{
 input:focus~.barra::before{
     width: 100%;
 }
-
+.img{
+    height: 20px;
+    width: 10px;
+}
 
 button{
     font-family: 'roboto';

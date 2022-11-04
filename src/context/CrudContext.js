@@ -10,7 +10,7 @@ const CrudProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
 
   let api = helpHttp();
-  let url = "https://compasspoint.herokuapp.com/api/v1/forms";
+  let url = "https://compasspoint.herokuapp.com/api/v1/estudiantes";
 
 
   useEffect(() => {
@@ -42,6 +42,7 @@ const CrudProvider = ({ children }) => {
       headers: { "content-type": "application/json" },
     };
 
+
     api.post(url, options).then((res) => {
       //console.log(res);
       if (!res.err) {
@@ -53,7 +54,7 @@ const CrudProvider = ({ children }) => {
   };
 
   const updateData = (data) => {
-    let endpoint = `${url}/${data.id}`;
+    let endpoint = `${url}/id/${data.id}`;
     //console.log(endpoint);
 
     let options = {
@@ -78,7 +79,7 @@ const CrudProvider = ({ children }) => {
     );
 
     if (isDelete) {
-      let endpoint = `${url}/${id}`;
+      let endpoint = `${url}/id/${id}`;
       let options = {
         headers: { "content-type": "application/json" },
       };

@@ -1,5 +1,6 @@
 import Button from '@mui/material/Button';
 import { useModal } from '../hook/useModal';
+import Alert from '@mui/material/Alert';
 /*import './Modal.css'*/
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 
@@ -7,7 +8,7 @@ import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 
 
 const ButtonM = ({el})=>{
-    let { nombreEstudiante,apellidoEstudiante,actaNacimiento,direccion,nombrePadre,apellidoPadre,telefono,cedula,confirmacion,pago,curso,documento_personal, id } = el;
+    let { nombreEstudiante,apellidoEstudiante,actaNacimiento,direccion,nombrePadre,tanda,apellidoPadre,telefono,cedula,confirmacion,pago,curso,documento_personal, id } = el;
   
     const handelPrint = ()=>{   window.print()};
     const[isOpenModal,openModal,closeModal] = useModal(false);
@@ -22,10 +23,11 @@ const ButtonM = ({el})=>{
           <div id="divb2"><h3>Cedula</h3> <p>{cedula}</p></div>
           <div id="divb2"><h3>Telefono</h3> <p>{telefono}</p></div>                                                   
           <div id="divb2"><h3>Curso</h3> <p>{curso}</p></div>
+          <div id="divb2"><h3>Tanda</h3> <p>{tanda}</p></div>
           <div id="divb2"><h3>Acta de Naciminento</h3> <a href={actaNacimiento}>Documanto</a></div> 
           <div id="divb2"><h3>Documento Personal</h3> <a href={documento_personal}>Documanto</a></div> 
-          <div id="divb2"><h3>Confirmacion</h3><p> {confirmacion? "Confirmado":"En Proceso"}</p></div>  
-          <div id="divb2"><h3>Pago</h3> <p>{pago? "Realizado": "NO realizado"}</p></div> 
+          <div id="divb2"><h3>Confirmacion</h3><p> {confirmacion? <Alert severity="success">Realizada</Alert>: <Alert severity="error">No realizada</Alert> }</p></div>  
+          <div id="divb2"><h3>Pago</h3> <p>{pago? <Alert severity="success">Confirmado</Alert> :<Alert severity="error">No confirmado</Alert>}</p></div> 
         
         </div></div></div></div></div>);
 }

@@ -1,15 +1,15 @@
 import { useState, useEffect, useContext } from "react";
-import UserContext from "../context/UserContext";
-/*import { Link } from "react-router-dom";*/
 import * as React from 'react';
+import UserContext from '../context/UserContext';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
+
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -21,7 +21,7 @@ function Copyright(props) {
     <Typography variant="body2" color="text.secondary" align="center" {...props}>
       {'Copyright © '}
       <Link color="inherit" href="https://github.com/Whilmis">
-        Whilmis Perez | Richard Hernandez
+        Whilmis Perez | Jairo Brito | Mirleny De Jesús 
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -37,7 +37,8 @@ const initailForm = {
   apellido: "",
   gmail:"",
   contrasena:"",
-  admin: false,
+  cedula: "",
+  admin: "General",
   id: null,
 };
 
@@ -46,10 +47,13 @@ const initailForm = {
 
 export default function CrearUsuario() {
   const { createDataU, updateDataU, dataToEditU, setDataToEditU } =
-  useContext(UserContext);
+    useContext(UserContext);
 
 const [form, setForm] = useState(initailForm);
-const [contra, setContra] = useState(initailForm)
+const [contra, setContra] = useState("");
+const [alert2, setAlert2] = useState(false);
+const [alert, setAlert] = useState(false);
+const [alert3, setAlert3] = useState(false);
 
 
 
@@ -61,39 +65,39 @@ useEffect(() => {
   }
 }, [dataToEditU]);
 
-const handleChange = (e) => {
-  setForm({
-    ...form,
-    [e.target.id]: e.target.value,
-  });
-};
 
 
-const change = (e) => {
-setContra(e.target.value)
-}
+
 
 const handleSubmit = (e) => {
   e.preventDefault();
 
-  if (!form.nombre || !form.apellido ||  !form.gmail || !form.contrasena ) {
-    alert("Datos incompletos");
-    return;
+  if (form.nombre = "" || !form.apellido || !form.gmail || !form.contrasena || !contra) {
+   setAlert2(true)
+   
   }
-
-  if ( form.contrasena != contra) {
-    alert("Tiene que ser la misma contraseña");
-    return;
-  }
-
-  if (form.id === null) {
+  else if (form.id === null) {
+    setAlert(true);
+    setContra("");
     createDataU(form);
-  } else {
+  }
+ else if (form.contrasena !== contra) {
+    setAlert3(true);
+   
+  }  else {
     updateDataU(form);
   }
 
   handleReset();
 };
+const handleChange = (e) => {
+  setForm({
+    ...form,
+    [e.target.name]: e.target.value,
+  });
+};
+
+
 
 const handleReset = (e) => {
   setForm(initailForm);
@@ -143,15 +147,10 @@ const handleReset = (e) => {
                 margin="normal"
                 required
                 fullWidth
-                onChange={(e) => {
-                  setForm({ 
-                    ...form,
-                    nombre: e.target.value,
-                  });
-                }}
-                id="name"
                 label="Nombre"
-                name="name"
+                value={form.nombre}
+                name="nombre"
+                onChange={handleChange}
               
                 autoFocus
               />
@@ -159,15 +158,11 @@ const handleReset = (e) => {
                 margin="normal"
                 required
                 fullWidth
-                onChange={(e) => {
-                  setForm({ 
-                    ...form,
-                    apellido: e.target.value,
-                  });
-                }}
+                onChange={handleChange}
                 id="apellido"
                 label="Apellido"
-                name="name"
+                value={form.apellido}
+                name="apellido"
                 
                 autoFocus
               />
@@ -175,40 +170,48 @@ const handleReset = (e) => {
                 margin="normal"
                 required
                 fullWidth
-                onChange={(e) => {
-                  setForm({ 
-                    ...form,
-                    gmail: e.target.value,
-                  });
-                }}
                 id="email"
                 label="Gmail"
-                name="email"
+                value={form.gmail}
+                name="gmail"
+                onChange={handleChange}
                 autoComplete="email"
+                autoFocus
+              />
+
+<TextField
+                margin="normal"
+                required
+                fullWidth
+                id="cedula"
+                label="Cedula"
+                value={form.cedula}
+                name="cedula"
+                  onChange={handleChange}
+               
                 autoFocus
               />
              
               <TextField
-                onChange={(e) => {
-                  setContra(e.target.value)
-                }}
+               
                 margin="normal"
                 required
                 fullWidth
-                name="password"
-                label="Contraseña"
+                value={form.contrasena}
                 type="password"
+                 name="contrasena"
+                onChange={handleChange}
+                label="Contraseña"
                 id="password"
                 autoComplete="current-password"
               />
 
 <TextField
                   onChange={(e) => {
-                    setForm({ 
-                      ...form,
-                      contrasena: e.target.value,
-                    });
+                    setContra(e.target.value)
                   }}
+
+                  value={contra}
                 margin="normal"
                 required
                 fullWidth
@@ -218,7 +221,7 @@ const handleReset = (e) => {
                 id="password"
                 autoComplete="current-password"
               />
-             
+            
               <Button
                 type="submit"
                 fullWidth
@@ -234,7 +237,20 @@ const handleReset = (e) => {
                     {"Login"}
                   </Link>
                 </Grid>
+             
               </Grid>
+              { alert2 && <Stack sx={{ width: '100%' }} spacing={2}>
+     
+              <Alert severity="error">Favor conpletar toda la informacion!</Alert>
+   </Stack>}
+   { alert3 && <Stack sx={{ width: '100%' }} spacing={2}>
+     
+              <Alert severity="error">Las contraseñas tienen que ser iguales!</Alert>
+   </Stack>}
+              { alert && <Stack sx={{ width: '100%' }} spacing={2}>
+     
+     <Alert severity="success">Usuario creado exitosamente — ya te puedes loguearte!</Alert>
+   </Stack>}
               <Copyright sx={{ mt: 5 }} />
             </Box>
           </Box>

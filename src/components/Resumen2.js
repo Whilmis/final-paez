@@ -13,8 +13,9 @@ import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 
 
 
-const Resumen = ()=>{
-    let { db: data } = useContext(CrudContext);
+const Resumen2 = ()=>{
+    let { db } = useContext(CrudContext);
+    let data = db.filter((el) => el.pago == 'confirmado' &  el.confirmacion == 'realizada')
     let newData = data.filter((el) => el.pago )
     let newData2 = data.filter((el) => el.confirmacion )
     let newData3 = data.filter((el) => el.curso === "Maternal" )
@@ -248,4 +249,4 @@ saveAsImage: {}
 }
 
 
-export default Resumen;
+export default Resumen2;

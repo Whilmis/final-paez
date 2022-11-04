@@ -1,12 +1,15 @@
 
+
 import "./inicio.css";
 
 
+
 const Inicio = () =>{
+  
     return(
         <div className="body">
             
-          <div className="imagen"><p>La educación es nuestra primera <span> amiga </span>  </p></div>
+          <div className="imagen"><p>La educación es nuestra primera  <span> amiga </span>  </p></div>
 
         <div className="elementos">
             <div className="elemento">

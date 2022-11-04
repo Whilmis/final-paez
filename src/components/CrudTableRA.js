@@ -8,13 +8,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
-import CrudContext from "../context/CrudContext";
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
+import Factura from './Factura'
 import AppWidgetSummary from './AppWidgetSummary'
-import Busqueda from "./Busqueda";
-import axios from "axios";
-import {ExportToExcel} from './exportToExcel'
 import { Grid, Container, Typography } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import PageviewIcon from '@mui/icons-material/Pageview';
@@ -41,32 +38,19 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-const CrudTableU = () => {
+const CrudTableRA = () => {
 
-  const { dbU: data,setDataToEditU, deleteDataU } = useContext(UserContext);
+const db = [{name:"whilmis Perez", type:"Paypal",  Number:"55478991"},{name:"Jairo Briro", type:"Transferencia",  Number:"5767787181"},{name:'Mirleny De Jesús', type:"Transferencia",  Number:"73241216232" }]
 
-  let newData = data.filter((el) => el.admin =="Admin" )
+ 
   return (
 
     <div>
     <hr></hr>
              
      
-      <Grid container spacing={4}   justifyContent="center"
-  alignItems="center">
-      <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title="Total de Usuarios" total={data.length} icon={'ant-design:android-filled'} />
-          </Grid>
-
-          <Grid item xs={12} sm={6} md={3}>
-            <AppWidgetSummary title=" Usuarios admin" total={newData.length} color="info" icon={'ant-design:apple-filled'} />
-          </Grid>
-
-          
-
-          
-          </Grid>
-
+  
+    
      
 
       
@@ -75,27 +59,23 @@ const CrudTableU = () => {
         <TableHead>
           <TableRow>
             <StyledTableCell>Nombre </StyledTableCell>
-            <StyledTableCell align="right">Gmail</StyledTableCell>
-            <StyledTableCell align="right">Cedula</StyledTableCell>
-            <StyledTableCell align="right">Contraseña</StyledTableCell>
-            <StyledTableCell align="right">Admin</StyledTableCell>
+            <StyledTableCell align="right">Tipo de pago</StyledTableCell>
+            <StyledTableCell align="right">Numero de transaccion</StyledTableCell>
             <StyledTableCell align="right">Acciones</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((el) => (
+          {db.map((el) => (
             <StyledTableRow key={el.id}>
               <StyledTableCell component="th" scope="row">
-                {el.nombre+ " "+ el.apellido}
+                {el.name}
               </StyledTableCell>
-              <StyledTableCell align="right">{el.gmail}</StyledTableCell>
-              <StyledTableCell align="right">{el.cedula}</StyledTableCell>
-              <StyledTableCell align="right">*****</StyledTableCell>
-              <StyledTableCell align="right">{el.admin === "Admin" ? "Confirmado":"No Confirmado"}</StyledTableCell>
+              <StyledTableCell align="right">{el.type}</StyledTableCell>
+              <StyledTableCell align="right">{el.Number}</StyledTableCell>
               <StyledTableCell align="right">{
                   <ButtonGroup variant="outlined" aria-label="outlined button group">
-                  <Button onClick={() => deleteDataU(el.id)}>Eliminar</Button>
-                  <Button onClick={() => setDataToEditU(el)}>Editar</Button>
+                    <Factura el={el}></Factura>
+                  <Button >Eliminar</Button>
                 </ButtonGroup>
               }</StyledTableCell>
             </StyledTableRow>
@@ -107,4 +87,4 @@ const CrudTableU = () => {
   );
 };
 
-export default CrudTableU;
+export default CrudTableRA;

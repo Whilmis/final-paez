@@ -6,15 +6,17 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 import Link from '@mui/material/Link';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import logo from "./logo.png";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 
 function Copyright(props) {
   return (
@@ -44,15 +46,19 @@ const initailForm = {
 
 export default function Login() {
   let navigate = useNavigate();
-  const { dbU: data, actualisaActual,actualU } = useContext(UserContext);
+  const { dbU: data, actualisaActual } = useContext(UserContext);
+  actualisaActual(7)
   const [form, setForm] = useState(initailForm);
+  const [alert, setAlet] = useState(false);
 
-  const handleSubmit = () =>{
+  const handleSubmit = (event) =>{
+    event.preventDefault();
       data.forEach(element => {
           if(element.gmail === form.gmail){
               if(element.contrasena === form.contrasena){
-                  
-                  if( element.admin == "true"){
+                actualisaActual(element.id)
+                  if( element.admin == "Admin"){
+                    
                       navigate("administrador")
                   }
                   else{
@@ -64,16 +70,15 @@ export default function Login() {
 
           }
           
-      });
+          
+      }
+      
+      );
+      setAlet(true)
     
   }
 
-  const handleChange = (e) => {
-      setForm({ 
-        ...form,
-        [e.target.id]: e.target.value,
-      });
-    };
+  
 
   return (
     <ThemeProvider theme={theme}>
@@ -103,16 +108,15 @@ export default function Login() {
               alignItems: 'center',
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-              <LockOutlinedIcon />
-            </Avatar>
+            <img className="imgc" src={logo} style={{height:'95px',width:'95px'}}/>
+            
             <Typography component="h1" variant="h5">
               Compass Point
             </Typography>
             <Typography component="h2" variant="h5" color="primary">
               Login
             </Typography>
-            <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+            <Box component="form" noValidate onSubmit={handleSubmit } sx={{ mt: 1 }}>
               <TextField
                 margin="normal"
                 defaultValue={form.gmail} 
@@ -147,14 +151,17 @@ export default function Login() {
                 id="password"
                 autoComplete="current-password"
               />
-          
+             { alert && <Stack sx={{ width: '100%' }} spacing={2}>
+     
+            <Alert severity="error">Usuario o Contraseña incorrectos!</Alert>
+         </Stack>}
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 sx={{ mt: 3, mb: 2, w:6 }}
               >
-                entrar
+                entrar 
               </Button>
               <Grid container>
               

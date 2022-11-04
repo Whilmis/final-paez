@@ -14,7 +14,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 
-const pages = ['Inicio', 'Solicitud', 'Contacto'];
+const pages = ['Inicio', 'Solicitud de inscripcion ', 'Contacto'];
 
 
 
@@ -36,14 +36,15 @@ const HeadersC = () => {
   const handleInicio = () => {
     navigate("/cliente")
   };
-  const handleContacto = () => {
-    navigate("/contacto")
-  };
+ 
 
   const handleSolicitud = () => {
     navigate("/solicitud")
   };
 
+  const handleEstudiante = () => {
+    navigate("/estudiante")
+  };
   const handlePago = () => {
     navigate("/pago")
   };
@@ -110,14 +111,15 @@ const HeadersC = () => {
                   <Typography textAlign="center">Inicio</Typography>
                 </MenuItem>
                 <MenuItem  onClick={handleSolicitud}>
-                  <Typography textAlign="center">Solicitud</Typography>
+                  <Typography textAlign="center">Solicitud de inscripcion </Typography>
+                </MenuItem>
+                <MenuItem  onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">Estudiante</Typography>
                 </MenuItem>
                 <MenuItem  onClick={handlePago}>
                   <Typography textAlign="center">Pago</Typography>
                 </MenuItem>
-                <MenuItem  onClick={handleContacto}>
-                  <Typography textAlign="center">Contactos</Typography>
-                </MenuItem>
+                
             </Menu>
           </Box>
           <AccountBalanceIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
@@ -156,10 +158,22 @@ const HeadersC = () => {
            onClick={handleSolicitud}
            sx={{ my: 2, color: 'white', display: 'block' }}
          >
-            Solicitud
+            Solicitud de inscripcion 
          </Button>
  
      </Box>
+
+     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+     
+     <Button
+    
+       onClick={handleEstudiante}
+       sx={{ my: 2, color: 'white', display: 'block' }}
+     >
+        Estudiante
+     </Button>
+
+ </Box>
 
      <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
      
@@ -173,17 +187,7 @@ const HeadersC = () => {
 
  </Box>
 
-     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-     
-         <Button
-         
-           onClick={handleContacto}
-           sx={{ my: 2, color: 'white', display: 'block' }}
-         >
-           Contactos
-         </Button>
- 
-     </Box>
+  
           
 
           <Box sx={{ flexGrow: 0 }}>

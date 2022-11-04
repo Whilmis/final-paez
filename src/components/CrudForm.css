@@ -2,7 +2,7 @@
     display: flex;
     color: rgb(53, 53, 53);
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 
 .textos{
@@ -15,12 +15,23 @@
     margin-left: 25px;
 }
 
+h4{
+    color: #678296;
+    
+}
+
 .doc{
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     padding: 20px;
     color: #0077d1;
+}
+
+#estudiante{
+    background-color: #0077d1;
+
+
 }
 
 .doc2{

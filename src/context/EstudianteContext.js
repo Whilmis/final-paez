@@ -1,43 +1,43 @@
 import { createContext, useEffect, useState } from "react";
 import { helpHttp } from "../helpers/helpHttp";
 
-const UserContext = createContext();
+const EstudianteContext = createContext();
 
-const UserProvider = ({ children }) => {
-  const [dbU, setDbU] = useState(null);
-  const [actualU, setActualU] = useState(5);
-  const [dataToEditU, setDataToEditU] = useState(null);
-  const [errorU, setErrorU] = useState(null);
-  const [loadingU, setLoadingU] = useState(false);
+const EstudianteProvider = ({ children }) => {
+  const [dbE, setDbE] = useState(null);
+  const [actualE, setActualE] = useState(5);
+  const [dataToEditE, setDataToEditE] = useState(null);
+  const [errorE, setErrorE] = useState(null);
+  const [loadingeE, setLoadingE] = useState(false);
 
   let api = helpHttp();
-  let url = "http://localhost:5000/users" /*"https://compasspoint.herokuapp.com/api/v1/users"*/;
+  let url = "http://localhost:5000/estudiantes";
 
 
   useEffect(() => {
-    setLoadingU(true);
+    setLoadingE(true);
     helpHttp()
       .get(url)
       .then((res) => {
         //console.log(res);
         if (!res.err) {
-          setDbU(res);
-          setErrorU(null);
+          setDbE(res);
+          setErrorE(null);
         } else {
-          setDbU(null);
-          setErrorU(res);
+          setDbE(null);
+          setErrorE(res);
         }
-        setLoadingU(false);
+        setLoadingE(false);
       });
   }, [url]);
 
 
  const actualisaActual = (data) =>
  {
-  setActualU(data);
+  setActualE(data);
  }
 
-  const createDataU = (data) => {
+  const createDataE = (data) => {
     data.id = Date.now();
     //console.log(data);
 
@@ -49,14 +49,14 @@ const UserProvider = ({ children }) => {
     api.post(url, options).then((res) => {
       //console.log(res);
       if (!res.err) {
-        setDbU([...dbU, res]);
+        setDbE([...dbE, res]);
       } else {
-        setErrorU(res);
+        setErrorE(res);
       }
     });
   };
 
-  const updateDataU = (data) => {
+  const updateDataE = (data) => {
     let endpoint = `${url}/${data.id}`;
     //console.log(endpoint);
 
@@ -68,15 +68,15 @@ const UserProvider = ({ children }) => {
     api.put(endpoint, options).then((res) => {
       //console.log(res);
       if (!res.err) {
-        let newData = dbU.map((el) => (el.id === data.id ? data : el));
-        setDbU(newData);
+        let newData = dbE.map((el) => (el.id === data.id ? data : el));
+        setDbE(newData);
       } else {
-        setErrorU(res);
+        setErrorE(res);
       }
     });
   };
 
-  const deleteDataU = (id) => {
+  const deleteDataE = (id) => {
     let isDelete = window.confirm(
       `¿Estás seguro de eliminar el registro con el id '${id}'?`
     );
@@ -90,10 +90,10 @@ const UserProvider = ({ children }) => {
       api.del(endpoint, options).then((res) => {
         //console.log(res);
         if (!res.err) {
-          let newData = dbU.filter((el) => el.id !== id);
-          setDbU(newData);
+          let newData = dbE.filter((el) => el.id !== id);
+          setDbE(newData);
         } else {
-          setErrorU(res);
+          setErrorE(res);
         }
       });
     } else {
@@ -102,21 +102,21 @@ const UserProvider = ({ children }) => {
   };
 
   const data = {
-    dbU,
-    errorU,
-    loadingU,
-    createDataU,
-    dataToEditU,
-    setDataToEditU,
-    updateDataU,
-    deleteDataU,
-    setActualU,
-    actualU,
+    dbE,
+    errorE,
+    loadingeE,
+    createDataE,
+    dataToEditE,
+    setDataToEditE,
+    updateDataE,
+    deleteDataE,
+    setActualE,
+    actualE,
     actualisaActual
   };
 
-  return <UserContext.Provider value={data}>{children}</UserContext.Provider>;
+  return <EstudianteContext.Provider value={data}>{children}</EstudianteContext.Provider>;
 };
 
-export { UserProvider };
-export default UserContext;
+export { EstudianteProvider };
+export default EstudianteContext;
